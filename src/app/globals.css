@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0f;
+  --bg2: #0f0f18;
+  --bg3: #14141f;
+  --accent: #7c3aed;
+  --accent2: #a855f7;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --border: #1e1e2e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #020617;
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+
+  background:
+    radial-gradient(circle, rgba(157, 78, 221, 0.45) 0%, transparent 35%),
+    radial-gradient(circle, rgba(67, 97, 238, 0.35) 0%, transparent 35%),
+    radial-gradient(circle, rgba(0, 255, 170, 0.18) 0%, transparent 40%);
+
+  background-size: 45% 45%;
+  background-repeat: no-repeat;
+
+  background-position:
+    15% 20%,
+    85% 25%,
+    50% 80%;
+
+  filter: blur(90px);
+
+  animation: auroraMove 20s ease-in-out infinite alternate;
+}
+
+@keyframes auroraMove {
+  0% {
+    background-position:
+      15% 20%,
+      85% 25%,
+      50% 80%;
+  }
+
+  25% {
+    background-position:
+      25% 30%,
+      75% 15%,
+      55% 70%;
+  }
+
+  50% {
+    background-position:
+      10% 40%,
+      90% 40%,
+      40% 60%;
+  }
+
+  75% {
+    background-position:
+      30% 20%,
+      70% 35%,
+      60% 85%;
+  }
+
+  100% {
+    background-position:
+      20% 15%,
+      80% 45%,
+      45% 75%;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-50px, 30px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(50px, -30px) scale(1);
+  }
+}
+
+body::after {
+  content: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── ID Card Swing Animation ─── */
+@keyframes swing {
+  0%   { transform: rotate(-3deg); }
+  50%  { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+.swing {
+  animation: swing 4s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* ─── ID Card Hover Effect ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.id-card-hover {
+  animation: float 3s ease-in-out infinite;
+}
+
+.id-card-hover:hover {
+  animation: none !important;
+  transform: translateY(-15px) !important;
+  box-shadow: 0 40px 100px rgba(124, 58, 237, 0.35), inset 0 1px 0 rgba(168, 85, 247, 0.2) !important;
+}
+
+/* Mobile & Tablet Responsive */
+@media (max-width: 768px) {
+  .id-card-hover {
+    animation: float 3.5s ease-in-out infinite;
+  }
+
+  .id-card-hover:hover {
+    transform: translateY(-8px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .id-card-hover {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .id-card-hover:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 25px 60px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(168, 85, 247, 0.15) !important;
+  }
+}
+
+/* ─── Skill Bar Animation ─── */
+@keyframes fillBar {
+  from { width: 0; }
+  to   { width: var(--target-width); }
+}
+
+.skill-fill {
+  animation: fillBar 1.2s ease forwards;
+  width: var(--target-width);
+  background: linear-gradient(90deg, #7c3aed, #a855f7);
+}
+
+/* ─── Section Common ─── */
+.section-label {
+  font-family: "Fira Code", monospace;
+  color: var(--accent);
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-line {
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── Hero Grid Responsive ─── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .hero-grid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ─── About Grid Responsive ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .about-grid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* ─── Stats Grid Responsive ─── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 2fr;
+    gap: 1rem;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}
+
+.card-glow {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg2);
+}
+
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+  transform: translateX(-150%);
+  animation: shimmer 6s linear infinite;
+  pointer-events: none;
+}
